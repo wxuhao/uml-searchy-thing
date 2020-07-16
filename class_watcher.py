@@ -51,6 +51,9 @@ def digest_class(class_data):
         capacity = details['EnrollmentCapacity']
         enrollment = details['EnrollmentTotal']
         enrollment_str = "{}/{}".format(enrollment, capacity)
+        waitlist_capacity = details['WaitListCapacity']
+        waitlist = details['WaitListTotal']
+        waitlist_str = "{}/{}".format(waitlist, waitlist_capacity)
         status = details['EnrollmentStatus']['Description']
         number = details['ClassNumber']
         meeting_data = class_data['Meetings'][0]
@@ -63,7 +66,7 @@ def digest_class(class_data):
         meet_days = meeting_data['DaysString']
         meet_time = "{} to {}".format(meeting_data['StartTimeFormatted'], meeting_data['EndTimeFormatted'])
 
-        return (title, number, prof_name, enrollment_str,
+        return (title, number, prof_name, enrollment_str, waitlist_str,
                 status, location, meet_days, meet_time)
     except Exception as e:
         print("Error digesting class")
